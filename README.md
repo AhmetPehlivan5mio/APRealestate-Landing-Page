@@ -1,132 +1,175 @@
-# APRealestate-Landing-Page
+import React, { useState } from "react";
 
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Checkbox } from "@/components/ui/checkbox";
-import { ArrowRight, Mail } from "lucide-react";
+const primary = "#144a89";
+const primaryLight = "#1d5fb0";
 
-// AP Real Estate – Minimal White & Elegant Website
-// Elegant, white background, minimal cards replaced with typographic layout, serif headings
+export default function APRealestateSite() {
+  const [sent, setSent] = useState(false);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSent(true);
+    setTimeout(() => setSent(false), 3500);
+  };
 
-export default function APRealEstateLanding() {
+  const nav = [
+    { label: "Leistungen", href: "#leistungen" },
+    { label: "Vorgehen", href: "#prozess" },
+    { label: "Über uns", href: "#about" },
+    { label: "Kontakt", href: "#kontakt" },
+  ];
+
   return (
-    <div className="min-h-screen bg-white text-black">
-      {/* Top Navigation */}
-      <header className="sticky top-0 z-50 border-b border-black/10 bg-white/90 backdrop-blur">
-        <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-          <a href="#" className="font-serif text-xl tracking-tight">AP Real Estate</a>
-          <ul className="hidden gap-10 md:flex font-light">
-            <li><a href="#leistungen" className="text-sm hover:opacity-70">Leistungen</a></li>
-            <li><a href="#kunden" className="text-sm hover:opacity-70">Kunden</a></li>
-            <li><a href="#referenzen" className="text-sm hover:opacity-70">Referenzen</a></li>
-            <li><a href="#kontakt" className="text-sm hover:opacity-70">Kontakt</a></li>
-          </ul>
-          <Button variant="outline" className="border-black text-black hover:bg-black hover:text-white">
-            <Mail className="mr-2 h-4 w-4" />
-            Anfragen
-          </Button>
-        </nav>
+    <div className="min-h-screen bg-white text-slate-900 antialiased">
+      {/* Header - weißer Hintergrund, blauer Trennstrich unten */}
+      <header
+        className="sticky top-0 z-30 backdrop-blur border-b shadow-sm"
+        style={{ background: "white", borderColor: primary }}
+      >
+        <div className="max-w-[960px] mx-auto px-5 py-3 flex items-center justify-between">
+          <a
+            href="#top"
+            className="tracking-tight font-medium text-[18px]"
+            style={{ color: primary }}
+          >
+            APRealestate
+          </a>
+          <nav className="hidden md:flex items-center gap-6">
+            {nav.map((n) => (
+              <a
+                key={n.href}
+                href={n.href}
+                className="text-[13px] uppercase tracking-[0.12em] font-medium transition-colors"
+                style={{ color: primary }}
+              >
+                {n.label}
+              </a>
+            ))}
+            <a
+              href="#kontakt"
+              className="text-[12px] uppercase tracking-[0.12em] text-white px-3 py-1.5 shadow-sm hover:shadow-md transition rounded-none"
+              style={{ background: primary }}
+            >
+              Kontakt
+            </a>
+          </nav>
+          <a
+            href="#kontakt"
+            className="md:hidden text-[12px] uppercase tracking-[0.12em] text-white px-3 py-1.5 shadow-sm rounded-none"
+            style={{ background: primary }}
+          >
+            Kontakt
+          </a>
+        </div>
       </header>
 
       {/* Hero */}
-      <section className="relative mx-auto max-w-5xl px-6 py-32 text-center">
-        <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-          <h1 className="font-serif text-5xl md:text-6xl leading-tight tracking-tight">
-            Qualifizierte Verkäufer-Leads <br />
-            <span className="text-black/50">für Immobilienprofis</span>
+      <section id="top">
+        <div className="max-w-[960px] mx-auto px-5 py-24 md:py-32">
+          <p className="text-[12px] uppercase tracking-[0.18em] text-slate-500">
+            Exklusive Kontakte. Außergewöhnliche Immobilien.
+          </p>
+          <h1
+            className="mt-4 text-[38px] md:text-[54px] font-light leading-[1.08] tracking-tight"
+            style={{ color: primary }}
+          >
+            Premium-Akquise für anspruchsvolle Immobilienmakler.<br className="hidden md:block" />
+            Verkäuferkontakte auf höchstem Niveau.
           </h1>
-          <p className="mt-8 text-lg text-black/70 max-w-2xl mx-auto font-light">
-            AP Real Estate generiert planbar Verkäuferkontakte für Vermittlungsräte, Investmentgesellschaften,
-            Family Offices und Immobilienhäuser. Diskret. Effizient. Datengetrieben.
+          <p className="mt-5 max-w-[52ch] text-slate-600 text-[17px]">
+            Wir verbinden exklusive Immobilienbesitzer mit ausgewählten Maklern –
+            diskret, effizient und erfolgsorientiert.
           </p>
-          <div className="mt-12 flex flex-wrap justify-center gap-4">
-            <a href="tel:017662216512">
-              <Button className="bg-black text-white hover:bg-black/90">
-                Jetzt Gespräch sichern
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
+          <div className="mt-10 flex flex-col sm:flex-row gap-3">
+            <a
+              href="#kontakt"
+              className="inline-flex items-center gap-2 text-[13px] font-medium text-white px-5 py-2.5 shadow-sm hover:shadow-md transition rounded-none"
+              style={{ background: primary }}
+            >
+              Exklusiv anfragen →
             </a>
-            <Button variant="outline" className="border-black text-black hover:bg-black hover:text-white">
-              Leistungsübersicht
-            </Button>
-          </div>
-        </motion.div>
-      </section>
-
-      {/* Leistungen */}
-      <section id="leistungen" className="border-t border-black/10 bg-white">
-        <div className="mx-auto max-w-4xl px-6 py-24 text-center">
-          <h2 className="font-serif text-3xl mb-6">Unsere Leistungen</h2>
-          <p className="text-black/70 leading-relaxed max-w-3xl mx-auto font-light">
-            Wir übernehmen die komplette Lead-Generierung für Sie – von der Identifikation bis zur qualifizierten
-            Übergabe. Unser datenbasierter Ansatz sorgt für planbare Verkäuferkontakte und messbare Ergebnisse.
-          </p>
-        </div>
-      </section>
-
-      {/* Kunden */}
-      <section id="kunden" className="border-t border-black/10 bg-white">
-        <div className="mx-auto max-w-4xl px-6 py-24 text-center">
-          <h2 className="font-serif text-3xl mb-6">Unsere Kunden</h2>
-          <p className="text-black/70 leading-relaxed max-w-3xl mx-auto font-light">
-            Wir sourcen ab 20 Mio. Volumen und arbeiten für Vermittlungsräte, Maklerhäuser, Investmentgesellschaften, Family Offices und
-            Immobilienhäuser, die ihren Verkäufer-Funnel strukturiert und diskret erweitern möchten.
-          </p>
-        </div>
-      </section>
-
-      {/* Referenzen */}
-      <section id="referenzen" className="border-t border-black/10 bg-white">
-        <div className="mx-auto max-w-4xl px-6 py-24 text-center">
-          <h2 className="font-serif text-3xl mb-10">Ergebnisse, die zählen</h2>
-          <div className="space-y-6 text-black/80 font-light">
-            <p>+140 qualifizierte Kontakte pro Quartal</p>
-            <p>{">35% Terminrate"}</p>
-            <p>{"100% DSGVO-konform"}</p>
+            <a
+              href="#leistungen"
+              className="inline-flex items-center gap-2 text-[13px] font-medium border border-slate-300 px-5 py-2.5 hover:bg-slate-50 transition rounded-none"
+              style={{ color: primary }}
+            >
+              Unsere Leistungen →
+            </a>
           </div>
         </div>
       </section>
 
-      {/* Kontakt */}
-      <section id="kontakt" className="border-t border-black/10 bg-white">
-        <div className="mx-auto max-w-5xl px-6 py-24 grid md:grid-cols-2 gap-12 items-start">
-          <div>
-            <h2 className="font-serif text-3xl mb-4">Kontakt aufnehmen</h2>
-            <p className="text-black/70 mb-6 font-light">
-              Erzählen Sie uns kurz von Ihren Zielen – wir melden uns innerhalb von 24 Stunden.
-            </p>
-            <p className="text-black/70 text-sm leading-relaxed">
-              AP Real Estate<br />Berlin · DACH & EU<br />
-              <span className="flex items-center gap-2 mt-2"><Mail className="h-4 w-4" /> kontakt@aprealestate.eu</span>
-            </p>
-          </div>
-          <div>
-            <form className="space-y-4">
-              <Input placeholder="Ihr Name" className="bg-transparent text-black placeholder:text-black/40 focus-visible:ring-black" />
-              <Input type="email" placeholder="Ihre E-Mail" className="bg-transparent text-black placeholder:text-black/40 focus-visible:ring-black" />
-              <Textarea placeholder="Ihre Nachricht" className="min-h-[140px] bg-transparent text-black placeholder:text-black/40 focus-visible:ring-black" />
-              <div className="flex items-start gap-3 text-sm">
-                <Checkbox id="gdpr" className="border-black data-[state=checked]:bg-black" />
-                <label htmlFor="gdpr" className="leading-tight text-black/80 font-light">
-                  Ich stimme der Verarbeitung meiner Daten gemäß Datenschutzhinweisen zu.
-                </label>
-              </div>
-              <Button className="w-full bg-black text-white hover:bg-black/90">Nachricht senden</Button>
-            </form>
+      {/* Kontakt mit Carousel */}
+      <section id="kontakt">
+        <div className="max-w-[720px] mx-auto px-5 py-18 md:py-24">
+          <p className="text-[12px] uppercase tracking-[0.18em]" style={{ color: primary }}>Kontakt</p>
+          <h4 className="mt-3 text-[26px] font-light tracking-tight" style={{ color: primary }}>Sprechen wir persönlich</h4>
+          <form onSubmit={handleSubmit} className="mt-6">
+            <div className="grid md:grid-cols-2 gap-5">
+              <label className="text-sm">
+                Name
+                <input className="mt-1 w-full border border-slate-300 px-3 py-2 rounded-none" placeholder="Max Mustermann" required />
+              </label>
+              <label className="text-sm">
+                E-Mail
+                <input type="email" className="mt-1 w-full border border-slate-300 px-3 py-2 rounded-none" placeholder="max@firma.de" required />
+              </label>
+            </div>
+            <div className="grid md:grid-cols-2 gap-5 mt-4">
+              <label className="text-sm">
+                Telefon
+                <input className="mt-1 w-full border border-slate-300 px-3 py-2 rounded-none" placeholder="+49…" />
+              </label>
+              <label className="text-sm">
+                Region / Gebiet
+                <input className="mt-1 w-full border border-slate-300 px-3 py-2 rounded-none" placeholder="z. B. Köln, Düsseldorf" />
+              </label>
+            </div>
+            <label className="text-sm block mt-4">
+              Nachricht
+              <textarea rows={4} className="mt-1 w-full border border-slate-300 px-3 py-2 rounded-none" placeholder="Ihr Anliegen…" />
+            </label>
+            <label className="flex items-start gap-2 text-sm text-slate-600 mt-4">
+              <input type="checkbox" required className="mt-1" />
+              <span>Ich akzeptiere die Datenschutzhinweise.</span>
+            </label>
+            <button type="submit" className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 text-white text-[13px] shadow-sm hover:shadow-md transition rounded-none" style={{ background: primaryLight }}>Nachricht senden →</button>
+            {sent && <div className="mt-2 text-sm text-green-600">Danke! Wir melden uns zeitnah.</div>}
+          </form>
+        </div>
+
+        {/* Standorte – Carousel */}
+        <div className="border-t" style={{ borderColor: primary }} />
+        <div className="max-w-[960px] mx-auto px-5 pb-14 pt-10">
+          <p className="text-[12px] uppercase tracking-[0.18em]" style={{ color: primary }}>Standorte</p>
+          <h5 className="mt-2 text-[22px] font-light tracking-tight" style={{ color: primary }}>Berlin · Düsseldorf · Bielefeld</h5>
+          <div className="mt-6 overflow-x-auto snap-x snap-mandatory">
+            <div className="flex gap-4 min-w-full pr-4">
+              {[{ city: "Berlin", email: "berlin@aprealestate.eu" }, { city: "Düsseldorf", email: "dus@aprealestate.eu" }, { city: "Bielefeld", email: "bielefeld@aprealestate.eu" }].map((loc) => (
+                <div key={loc.city} className="snap-start shrink-0 w-[280px] md:w-[320px] border" style={{ borderColor: primary }}>
+                  <div className="px-4 py-3 text-white" style={{ background: primary }}>
+                    <div className="uppercase text-[12px] tracking-[0.18em]">{loc.city}</div>
+                  </div>
+                  <div className="px-4 py-4 bg-white">
+                    <div className="text-sm text-slate-600">E-Mail</div>
+                    <a href={`mailto:${loc.email}`} className="block text-[15px] underline" style={{ color: primary }}>{loc.email}</a>
+                    <div className="mt-3 text-sm text-slate-600">Telefon</div>
+                    <div className="text-[15px] text-slate-800">0176 62216512</div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-black/10 bg-white">
-        <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-6 py-8 md:flex-row text-sm text-black/60">
-          <p>© {new Date().getFullYear()} AP Real Estate. Alle Rechte vorbehalten.</p>
-          <div className="flex items-center gap-6">
-            <a href="#">Impressum</a>
-            <a href="#">Datenschutz</a>
+      <footer style={{ background: primary }}>
+        <div className="max-w-[960px] mx-auto px-5 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-sm text-white">
+          <div>© {new Date().getFullYear()} APRealestate</div>
+          <div className="flex gap-6">
+            <a href="#" className="hover:underline text-white">Impressum</a>
+            <a href="#" className="hover:underline text-white">Datenschutz</a>
+            <a href="#" className="hover:underline text-white">AGB</a>
           </div>
         </div>
       </footer>
